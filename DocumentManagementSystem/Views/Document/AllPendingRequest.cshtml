@@ -1,0 +1,83 @@
+﻿@model IEnumerable<DocumentViewModel>
+@{
+    ViewData["Title"] = "Pending Request";
+}
+@*<div class="app-title">
+        <div>
+            <h1><i class="fa fa-dashboard"></i> Document Management System</h1>
+            <p>Pending Document</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item"><a asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
+        </ul>
+    </div>*@
+@if (Model.Any())
+{
+    <section class="login-content">
+        <div class=" col-lg-6">
+
+
+            <h3 class="tile-title text-center">All Pending Requests</h3>
+            @*<a class="btn btn-dark" style="width:auto" asp-controller="Dashboard" asp-action="Index">
+            Dashboard
+        </a>*@
+            @foreach (var doc in Model)
+            {
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Document Name : @doc.DocumentName
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            @doc.Description
+                        </h5>
+                    </div>
+                    <div class="card-footer">
+
+                        <form asp-action="DeleteRole" asp-route-id="@doc.Id" method="post">
+                            <a class="btn btn-dark" asp-action="EditRole" asp-controller="Administration" asp-route-id="@doc.Id">Approve</a>
+                            <span style="display:none" id="ConfirmDeleteSpan_@doc.Id">
+                                <span>Are you sure you want to delete?</span>
+                                <button type="submit" class="btn btn-danger">Yes</button>
+                                <a href="#" class="btn btn-dark" onclick="ConfirmDelete('@doc.Id',false)">No</a>
+                            </span>
+                            <span id="DeleteSpan_@doc.Id">
+                                <a href="#" class="btn btn-danger" doc.Id',true)">Query</a>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+            }
+            @section Scripts{
+                <script src="~/js/site.js"></script>
+            }
+        </div>
+    </section>
+}
+else
+{
+    <section class="login-content" style="margin-top:-100px">
+        <div class=" col-lg-6">
+            <div class="card">
+                <h3 class="tile-title text-center">Pending Document Request</h3>
+                <div class="card-header">
+                    No document request yet
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Use the button below to back home
+                    </h5>
+                    <a class="btn btn-dark" style="width:auto" asp-controller="Dashboard" asp-action="Index">
+                        Home
+                    </a>
+                </div>
+            </div>
+            
+            @section Scripts{
+                <script src="~/js/site.js"></script>
+            }
+
+        </div>
+    </section>
+}

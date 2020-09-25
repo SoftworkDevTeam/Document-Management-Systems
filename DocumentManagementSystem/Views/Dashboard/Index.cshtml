@@ -1,0 +1,202 @@
+﻿@inject SignInManager<ApplicationUser> signInManager;
+@model PageViewModel
+@*Dashboard*@
+
+@*<div class="app-title">
+        <div>
+            <h1><i class="fa fa-dashboard"></i> @Model.Title</h1>
+            <p>@Model.Description</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+        </ul>
+    </div>*@
+
+@if (signInManager.IsSignedIn(User) && User.IsInRole("admin"))
+{
+    <div class="row">
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small primary coloured-icon">
+                <i class="icon fa fa-users fa-3x"></i>
+                <div class="info">
+                    <h4>Users</h4>
+                    <p id="userCount"><b>@Model.ProfileList.Count()</b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small primary coloured-icon">
+                <i class="icon fa fa-laptop fa-3x"></i>
+                <div class="info">
+                    <h4>Documents</h4>
+                    <p id="deviceCount"><b>@Model.NewDocList.Count()</b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small warning coloured-icon">
+                <i class="icon fa fa-laptop fa-3x"></i>
+                <div class="info">
+                    <h4>New Document</h4>
+                    <p id="checkedInDevices"><b>@Model.NewDocList.Count()</b></p>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="col-md-6 col-lg-3">
+                <div class="widget-small danger coloured-icon">
+                    <i class="icon fa fa-users fa-3x"></i>
+                    <div class="info">
+                        <h4>Schedules</h4>
+                        <p id="scheduleCount"><b></b></p>
+                    </div>
+                </div>
+            </div>*@
+    </div>
+}
+else if (signInManager.IsSignedIn(User) && User.IsInRole("user"))
+{
+    <div class="row">
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small primary coloured-icon">
+                <i class="icon fa fa-laptop fa-3x"></i>
+                <div class="info">
+                    <h4>Documents</h4>
+                    <p id="deviceCount"><b>@Model.NewDocList.Count()</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@*<div class="row">
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small primary coloured-icon">
+                <i class="icon fa fa-users fa-3x"></i>
+                <div class="info">
+                    <h4>Users</h4>
+                    <p id="userCount"><b></b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small warning coloured-icon">
+                <i class="icon fa fa-users fa-3x"></i>
+                <div class="info">
+                    <h4>Admins</h4>
+                    <p id="administrators"><b></b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small info coloured-icon">
+                <i class="icon fa fa-users fa-3x"></i>
+                <div class="info">
+                    <h4>Front Desks</h4>
+                    <p id="frontdesks"><b></b></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small danger coloured-icon">
+                <i class="icon fa fa-users fa-3x"></i>
+                <div class="info">
+                    <h4>Schedules</h4>
+                    <p id="scheduleCount"><b></b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small primary coloured-icon">
+                <i class="icon fa fa-male fa-3x"></i>
+                <div class="info">
+                    <h4>Visitors</h4>
+                    <p id="visitorCount"><b></b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small warning coloured-icon">
+                <i class="icon fa fa-male fa-3x"></i>
+                <div class="info">
+                    <h4>Checked In Visitors</h4>
+                    <p id="deviceCount"><b></b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small info coloured-icon">
+                <i class="icon fa fa-male fa-3x"></i>
+                <div class="info">
+                    <h4>Checked Out visitors</h4>
+                    <p id="checkedOutVisitor"><b></b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small danger coloured-icon">
+                <i class="icon fa fa-male fa-3x"></i>
+                <div class="info">
+                    <h4>Schedules</h4>
+                    <p id="scheduleCount"><b></b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small primary coloured-icon">
+                <i class="icon fa fa-laptop fa-3x"></i>
+                <div class="info">
+                    <h4>Devices</h4>
+                    <p id="deviceCount"><b></b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small warning coloured-icon">
+                <i class="icon fa fa-laptop fa-3x"></i>
+                <div class="info">
+                    <h4>Checked In Devices</h4>
+                    <p id="checkedInDevices"><b></b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small info coloured-icon">
+                <i class="icon fa fa-laptop fa-3x"></i>
+                <div class="info">
+                    <h4>Checked Out Devices</h4>
+                    <p id="checkedOutDevices"><b></b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small danger coloured-icon">
+                <i class="icon fa fa-laptop fa-3x"></i>
+                <div class="info">
+                    <h4>Exceptions</h4>
+                    <p id="exceptions"><b></b></p>
+                </div>
+            </div>
+        </div>
+
+    </div>*@
+
+
+
+@*@section Scripts{
+
+        <script src="~/js/scripts/dashboard.js"></script>
+
+    }*@
+
+
+
+

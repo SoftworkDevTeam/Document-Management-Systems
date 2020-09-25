@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProfileViewModel>
+
+<section class="login-content" style="margin-top:-200px">
+    <div>
+        <table class="table bg-light m-auto">
+            <thead>
+                <tr>
+                    <th>
+                        Fist Name
+                        @*<a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Last Name</a>*@
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Email
+                        @*<a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Enrollment Date</a>*@
+                    </th>
+                    <th>
+                        Phone Number
+                    </th>
+                    <th>
+                        Date Created
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MobileNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        <a asp-controller="" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary py-2 mr-1">Access</a>
+                    </td>
+                    @*<td>
+            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+        </td>*@
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
